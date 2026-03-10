@@ -1,58 +1,72 @@
-# 🏭 Inventory Extraction Pipeline (Phase 1)
-
-هذا المشروع عبارة عن نظام أتمتة لاستخراج تقارير المخزون من قاعدة بيانات **SQL Server** باستخدام **Python** و **SQLAlchemy**. صُمم النظام ليكون مرناً، آمناً، ومنظماً وفق أفضل ممارسات هندسة البيانات.
-
-## 🌟 ميزات المشروع (Key Features)
-*   **Decoupled Architecture:** فصل الإعدادات (`config.py`) عن الدوال المساعدة (`utils.py`) عن الكود التنفيذي (`extract.py`).
-*   **Secure Authentication:** إدارة كاملة للبيانات الحساسة عبر ملفات `.env` لضمان عدم تسريب كلمات المرور.
-*   **Smart WSL Connectivity:** التعرف التلقائي على IP المضيف عند التشغيل داخل بيئة WSL.
-*   **Professional Logging:** نظام تتبع كامل للعمليات والأخطاء مع دعم للغة العربية (UTF-8).
-*   **Data Validation:** التحقق من وجود جميع المتغيرات والبيانات قبل بدء المعالجة.
+🏭 Inventory Extraction Pipeline (Phase 1)
+This project is an automated system designed to extract inventory reports from a SQL Server database using Python and SQLAlchemy. The system is built to be flexible, secure, and organized according to Data Engineering best practices.
 
 ---
 
-## 🏗️ هيكلية المشروع (Project Structure)
-```text
-├── config.py          # إدارة الإعدادات والـ Logging
-├── utils.py           # وظائف مساعدة (مثل جلب الـ IP)
-├── extract.py         # الكود الرئيسي لاستخراج البيانات وتصديرها
-├── requirements.txt   # المكتبات المطلوبة للتشغيل
-├── .env.example       # نموذج لملف الإعدادات السرية
-└── .gitignore         # استبعاد الملفات غير الضرورية والحساسة
+🌟 Key Features
+    ◉ Decoupled Architecture: Clean separation of concerns between configuration (config.py), helper functions (utils.py), and the execution logic (extract.py).
+
+    ◉ Secure Authentication: Robust management of sensitive credentials via .env files to prevent credential leaks.
+
+    ◉ Smart WSL Connectivity: Automatic detection of the Host IP address when running within a Windows Subsystem for Linux (WSL) environment.
+
+    ◉ Professional Logging: A comprehensive tracking system for operations and errors with UTF-8 support (ideal for multilingual data).
+
+    ◉ Data Validation: Pre-execution checks to ensure all required environment variables and database connections are present.  
 
 ---
 
-🛠️ كيف تبدأ (Getting Started)
-1. المتطلبات (Prerequisites)
-    ● تثبيت Python 3.10+
-    ● تثبيت ODBC Driver 18 for SQL Server.
-    ● قاعدة بيانات SQL Server تحتوي على جداول Sales.Products و Sales.Inventory.
+🏗️ Project Structure
+├── config.py          # Configuration and Logging management
+├── utils.py           # Utility functions (e.g., WSL Host IP detection)
+├── extract.py         # Main script for data extraction and export
+├── requirements.txt   # Required Python dependencies
+├── .env.example       # Template for sensitive environment variables
+└── .gitignore         # Rules to exclude unnecessary or sensitive files
 
-2. التثبيت (Installation)
-    1.قم بتحميل المستودع:
-    git clone [https://github.com/yourusername/inventory-extraction.git](https://github.com/yourusername/inventory-extraction.git)
+---
+
+🛠️ Getting Started
+1. Prerequisites
+    ◉ Python 3.10+ installed.
+    ◉ ODBC Driver 18 for SQL Server installed.
+    ◉ Access to a SQL Server instance containing Sales.Products and Sales.Inventory tables.
+
+2. Installation
+    1. Clone the repository:
+    git clone https://github.com/yourusername/inventory-extraction.git
     cd inventory-extraction
 
-    2.قم بإنشاء بيئة افتراضية وتفعيلها:
+    2. Create and activate a virtual environment:
     python -m venv venv
-    source venv/bin/activate  # لـ Linux/WSL
+    source venv/bin/activate  # For Linux/WSL
+    # or: venv\Scripts\activate (For Windows)
 
-    3.تثبيت المكتبات:
+    3. Install dependencies:
     pip install -r requirements.txt
 
-3. الإعداد (Configuration)
-قم بإنشاء ملف .env بناءً على .env.example وأضف بيانات الاتصال الخاصة بك.
+3. Configuration
+Create a .env file based on the .env.example template and add your specific database credentials.
 
-🚀 التشغيل (Usage)
-لتشغيل عملية الاستخراج وتوليد تقرير الإكسل:
+---
+
+🚀 Usage
+To execute the extraction process and generate the Excel report, run:
 python extract.py
-ستجد التقرير الناتج في مجلد output/ والسجلات في data/app.log.
+The generated report will be saved in the output/ directory, and operation logs can be found in data/app.log.
 
-🎯 خريطة الطريق للمستقبل (Future Roadmap - Phase 2)
-    ● [ ] تحويل المشروع بالكامل إلى حاوية Docker.
-    ● [ ] إضافة اختبارات وحدات (Unit Tests) لضمان جودة البيانات.
-    ● [ ] دعم قواعد بيانات سحابية (مثل PostgreSQL على AWS/Azure).
-    ● [ ] أتمتة التشغيل (Scheduling) باستخدام Airflow أو Cron Jobs.
+---
 
-🤝 المساهمة
-المشروع مفتوح للمساهمات! لا تتردد في فتح Issue أو تقديم Pull Request.
+🎯 Future Roadmap (Phase 2)
+    ◉ [ ] Containerize the entire application using Docker.
+
+    ◉ [ ] Implement Unit Tests to ensure data quality and pipeline integrity.
+
+    ◉ [ ] Expand support for Cloud Databases (e.g., PostgreSQL on AWS/Azure).
+
+    ◉ [ ] Implement Workflow Orchestration (Scheduling) using Apache Airflow or Cron Jobs.
+
+---
+
+🤝 Contributing
+Contributions are welcome! Feel free to open an Issue or submit a Pull Request.
